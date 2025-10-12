@@ -38,7 +38,7 @@
                   <a href="{% url 'editEnemy' enemy.pk %}"><button class="btn btn-sm btn-outline-danger">Edit</button></a>
                   <a href="{% url 'deleteEnemy' enemy.pk %}"><button class="btn btn-sm btn-outline-danger">Delete</button></a> 
                 </div>
-                <a href="{% url 'mark_as_revenge_taken' enemy.pk %}"><button class="btn btn-sm btn-danger">Mark as Revenge Taken</button></a>
+                <a href="{% url 'mark_as_revenge_taken' enemy.pk %}"><button class="btn btn-sm btn-danger mt-2">Mark as Revenge Taken</button></a>
               </div>
             </div>
             {% endfor %}
@@ -68,7 +68,7 @@
                   <a href="{% url 'editEnemy' enemy.pk %}"><button class="btn btn-sm btn-outline-danger">Edit</button></a>
                   <a href="{% url 'deleteEnemy' enemy.pk %}"><button class="btn btn-sm btn-outline-danger">Delete</button></a>
                 </div>
-                <a href="{% url 'mark_as_revenge_not_taken' enemy.pk %}"><button class="btn btn-sm btn-danger">Mark as Revenge Not Taken</button></a>
+                <a href="{% url 'mark_as_revenge_not_taken' enemy.pk %}"><button class="btn btn-sm btn-danger mt-2">Mark as Revenge Not Taken</button></a>
               </div>
             </div>
             {% endfor %}
