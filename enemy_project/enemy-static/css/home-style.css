@@ -1,0 +1,93 @@
+.gradient-bg {
+  background: linear-gradient(135deg, #000000, #2c0000, #770000);
+  min-height: 100vh;
+}
+
+.glow-text {
+  text-shadow: 0 0 10px #ff0000, 0 0 20px #aa0000;
+}
+
+.enemy-block {
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 2px solid #550000;
+  border-radius: 15px;
+  height: 72vh;
+  overflow-y: auto;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+}
+
+.block-header {
+  background: rgba(20, 0, 0, 0.8);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.enemy-list {
+  padding: 10px;
+}
+
+.enemy-card {
+  display: flex;
+  align-items: center;
+  background-color: rgba(40, 0, 0, 0.7);
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  transition: transform 0.2s ease;
+}
+
+.enemy-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 10px red;
+}
+
+.enemy-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 15px;
+  cursor: pointer;
+  border: 2px solid red;
+  object-fit: cover;
+}
+
+.modal-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid red;
+}
+
+.shadow-red {
+  box-shadow: 0 0 10px red;
+}
+
+.enemy-input-form {
+  border-top: 2px solid red;
+}
+
+.show-form-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: red;
+  border: none;
+  border-radius: 50%;
+  padding: 5px 20px;
+  color: white;
+  font-size: 35px;
+  box-shadow: 0 0 15px red;
+  z-index: 2000;
+  transition: transform 0.5s;
+}
+
+.show-form-btn:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .enemy-input-form {
+    display: none;
+  }
+}

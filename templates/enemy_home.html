@@ -1,0 +1,145 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enemy Management</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/home-style.css' %}">
+</head>
+<body class="gradient-bg text-light">
+
+  <div class="container-fluid py-4">
+    <h1 class="text-center mb-4 fw-bold text-danger glow-text">Enemy Management System</h1>
+
+    <div class="row">
+      <!-- Revenge Not Taken -->
+      <div class="col-md-6 mb-3">
+        <div class="enemy-block">
+          <h3 class="block-header text-center text-danger sticky-top py-2">
+            Revenge Not Taken
+          </h3>
+          <div class="enemy-list">
+            <!-- Example enemy -->  
+            {% if not revenge_not_taken_enemies %}
+            <marquee behavior="alternate" direction="right">
+              <p class="text-danger">No enemies to take revenge</p>
+            </marquee>  
+            {% endif %} 
+            {% for enemy in revenge_not_taken_enemies %}
+            <div class="enemy-card">
+              <img src="{{ enemy.photo.url }}" alt="Enemy" class="enemy-img" data-bs-toggle="modal" data-bs-target="#enemyModal1">
+              <div class="enemy-info">
+                <h5>{{ enemy.name }}</h5>
+                <p>{{ enemy.reason }}</p>
+                <div class="btn-group mt-2">
+                  <a href="{% url 'editEnemy' enemy.pk %}"><button class="btn btn-sm btn-outline-danger">Edit</button></a>
+                  <a href="{% url 'deleteEnemy' enemy.pk %}"><button class="btn btn-sm btn-outline-danger">Delete</button></a>
+                  <a href="{% url 'mark_as_revenge_taken' enemy.pk %}"><button class="btn btn-sm btn-danger">Mark as Revenge Taken</button></a>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Revenge Taken -->
+      <div class="col-md-6 mb-3">
+        <div class="enemy-block">
+          <h3 class="block-header text-center text-danger sticky-top py-2">
+            Revenge Taken
+          </h3>
+          <div class="enemy-list">
+            {% if not revenge_taken_enemies %}
+            <marquee behavior="alternate" direction="right">
+              <p class="text-danger">Taken revenge for all enemies</p>
+            </marquee>
+            {% endif %} 
+            {% for enemy in revenge_taken_enemies %}
+            <div class="enemy-card">
+              <img src="{{ enemy.photo.url }}" alt="Enemy" class="enemy-img" data-bs-toggle="modal" data-bs-target="#enemyModal3">
+              <div class="enemy-info">
+                <h5>{{ enemy.name }}</h5>
+                <p>{{ enemy.reason }}</p>
+                <div class="btn-group mt-2">
+                  <a href="{% url 'editEnemy' enemy.pk %}"><button class="btn btn-sm btn-outline-danger">Edit</button></a>
+                  <a href="{% url 'deleteEnemy' enemy.pk %}"><button class="btn btn-sm btn-outline-danger">Delete</button></a>
+                  <a href="{% url 'mark_as_revenge_not_taken' enemy.pk %}"><button class="btn btn-sm btn-danger">Mark as Revenge Not Taken</button></a>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Enemy Form -->
+    <div id="enemyForm" class="enemy-input-form bg-dark p-3 fixed-bottom">
+      <form class="row g-2" action="{% url 'addEnemy' %}" method="POST">
+        {% csrf_token %}
+        <div class="col-md-2">
+          <h3 class="text-danger">Add Enemy Here</h3>
+        </div>
+        <div class="col-md-3">
+          <input type="text" name="enemyName" class="form-control" placeholder="Enemy Name" required>
+        </div>
+        <div class="col-md-4">
+          <input type="text" name="enemyReason" class="form-control" placeholder="Reason / Description" required>
+        </div>
+        <!-- <div class="col-md-3">
+          <input type="file" name="enemyPhoto" class="form-control">
+        </div> -->
+        <div class="col-md-2 d-grid">
+          <button type="submit" class="btn btn-danger shadow-red">Add Enemy</button>
+        </div>
+      </form>
+      <p class="text-danger mt-2" style="text-align: center;">Made with ❤️ for Sravanthi</p>
+    </div>
+
+    <!-- Floating Button (for Mobile) -->
+    <button id="toggleFormBtn" class="show-form-btn d-md-none">+</button>
+
+  </div>
+
+  <!-- Enemy Detail Modal (Example)
+  <div class="modal fade" id="enemyModal1" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-light border-danger">
+        <div class="modal-header border-danger">
+          <h5 class="modal-title text-danger">John Doe</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img src="https://via.placeholder.com/100" class="modal-img mb-3" alt="Enemy">
+          <p>Reason: Betrayal at the last mission.</p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    
+    const toggleBtn = document.getElementById('toggleFormBtn');
+    const form = document.getElementById('enemyForm');
+
+    toggleBtn.addEventListener('click', () => {
+      if (document.getElementById('toggleFormBtn').innerHTML == '+') {
+        toggleBtn.innerHTML = 'x';
+      }
+      else if (document.getElementById('toggleFormBtn').innerHTML == 'x') {
+        toggleBtn.innerHTML = '+';
+      }
+      if (form.style.display === 'none' || form.style.display === '') {
+        form.style.display = 'block';
+      } else {
+        form.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
