@@ -17,8 +17,8 @@ def home(request):
 
 # Manual credentials
 ALLOWED_USER = {
-    "username": "root",
-    "password": "root"
+    "username": "bangaram",
+    "password": "bangaram@123"
 }
 
 def login_view(request):
