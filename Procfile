@@ -1,1 +1,1 @@
-web: gunicorn enemy_management.wsgi
+web: gunicorn enemy-management.wsgi
